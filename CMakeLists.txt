@@ -742,6 +742,7 @@ endif()
 
 # Find EnergyPlus, which will set the ENERGYPLUS_XXX variables and cache them
 find_package(EnergyPlus "${ENERGYPLUS_VERSION}" REQUIRED)
+get_filename_component(ENERGYPLUS_DIR "${ENERGYPLUS_EXE}" DIRECTORY)
 
 # Radiance
 if(UNIX)
@@ -1315,7 +1316,6 @@ if (BUILD_CLI)
   install(FILES "${PROJECT_BINARY_DIR}/openstudio-gems/openstudio-gems.gemspec" DESTINATION ./Ruby/ COMPONENT "RubyAPI" )
 endif()
 
-get_filename_component(ENERGYPLUS_DIR "${ENERGYPLUS_EXE}" DIRECTORY)
 file(GLOB ENERGYPLUS_FILES "${ENERGYPLUS_DIR}/energyplus*")
 file(GLOB ENERGYPLUS_LIB_FILES "${ENERGYPLUS_DIR}/libenergyplus*")
 file(GLOB EXPAND_OBJECTS "${ENERGYPLUS_DIR}/ExpandObjects*")
