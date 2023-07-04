@@ -9771,44 +9771,32 @@ OS:Refrigeration:AirChiller,
         \default 0.0
         \note This value is only used if the Cooling Source Type is DXEvaporator
 
-ZoneHVAC:RefrigerationChillerSet,
-        \memo Works in conjunction with one or multiple air chillers, compressor racks,
-        \memo refrigeration systems, or refrigeration secondary system objects to simulate the
-        \memo performance of a group of air chillers cooling a single zone. The chiller set
-        \memo model passes information about the zone conditions to determine the performance of
-        \memo individual chiller coils within the set, thus providing the sensible and latent heat
-        \memo exchange with the zone environment.
-        \extensible:1 -- duplicate last field, remembering to remove ; from "inner" fields.
-        \min-fields 6
-  A1 ,  \field Name
-        \required-field
-        \type alpha
-        \reference ZoneEquipmentNames
-  A2 ,  \field Availability Schedule Name
-        \note Availability schedule name for this system. Schedule value > 0 means the system is available.
-        \note If this field is blank, the system is always available.
-        \type object-list
-        \object-list ScheduleNames
-  A3  , \field Zone Name
-        \note This must be a controlled zone and appear in a ZoneHVAC:EquipmentConnections object.
-        \type object-list
-        \object-list ZoneNames
-  A4 ,  \field Air Inlet Node Name
-        \type node
-        \note Not used - reserved for future use
-        \note Name of the zone exhaust node (see Node) from which the refrigeration chiller
-        \note draws its indoor air.
-        \note This should be one of the zone exhaust nodes for the zone cooled by the chiller set.
-  A5 ,  \field Air Outlet Node Name
-        \type node
-        \note Not used - reserved for future use
-        \note The name of the node where the chiller coil sends its outlet air,
-        \note which must be one of the inlet air nodes for the zone which is being cooled.
-  A6 ;  \field Air Chiller 1 Name
-        \begin-extensible
-        \type object-list
-        \note This is the first chiller turned on to meet the zone load
-        \object-list RefrigerationAirChillerNames
+OS:ZoneHVAC:RefrigerationChillerSet,
+       \memo Works in conjunction with one or multiple air chillers, compressor racks,
+       \memo refrigeration systems, or refrigeration secondary system objects to simulate the
+       \memo performance of a group of air chillers cooling a single zone. The chiller set
+       \memo model passes information about the zone conditions to determine the performance of
+       \memo individual chiller coils within the set, thus providing the sensible and latent heat
+       \memo exchange with the zone environment.
+       \extensible:1
+       \min-fields 4
+  A1,  \field Handle
+       \type handle
+       \required-field
+  A2,  \field Name
+       \required-field
+       \type alpha
+       \reference ZoneEquipmentNames
+  A3,  \field Availability Schedule Name
+       \note Availability schedule name for this system. Schedule value > 0 means the system is available.
+       \type object-list
+       \required-field
+       \object-list ScheduleNames
+  A4;  \field Air Chiller 1 Name
+       \begin-extensible
+       \type object-list
+       \note Extensible field that determines the order in which the chillers are turned on to meet the zone load
+       \object-list RefrigerationAirChillerNames
 
 \group OpenStudio HVAC
 
